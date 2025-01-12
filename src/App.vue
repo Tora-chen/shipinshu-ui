@@ -7,12 +7,12 @@ import { RouterView } from 'vue-router'
 // const togglePlay = () => {
 //   is_play.value = !is_play.value;
 // };
+
+// 测试推送
 </script>
 
 <template>
   <router-view />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
