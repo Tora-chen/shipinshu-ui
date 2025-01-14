@@ -6,6 +6,7 @@ import { API_URLS } from '@/config/api';
 
 const collection = ref([]);
 const recommendation = ref([]);
+const myLectures = ref([]);
 
 const handleJump = () =>{
    router.push('/use');
@@ -42,9 +43,25 @@ const fetchRecommendation = async () => {
   }
 };
 
+const fetchMyLectures = async () => {
+  try {
+    const response = await fetch(API_URLS.getMyLectures, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    myLectures.value = await response.json();
+    console.log('My lectures:', response);
+  } catch (error) {
+    console.error('Error fetching my lectures:', error);
+  }
+};
+
 onMounted(() => {
   fetchUserCollection();
   fetchRecommendation();
+  fetchMyLectures();
 });
 </script>
 <template>
@@ -52,6 +69,23 @@ onMounted(() => {
     <div class="button">
         <el-button @click="handleJump" style="cursor: pointer;">立即使用</el-button>
     </div>
+    <!-- 我的课程 -->
+    <div class="block">
+        <h2 class="collection-title">我的课程</h2>
+        <div class="collection-grid">
+            <ElCard v-for="lecture in myLectures" :key="lecture.id" class="lecture-card">
+            <img src="/lectureThumbnail.png" alt="lecture.title" class="lecture-thumbnail">
+            <h3 class="course-title">{{ lecture.title }}</h3>
+            <p class="course-description">{{ lecture.description }}</p>
+            </ElCard>
+            <!-- 添加课程 -->
+            <ElCard class="lecture-card" style="cursor: pointer;">
+            <img src="/addLecture.png" alt="添加课程" class="lecture-thumbnail">
+            <h3 class="course-title" style="text-align: center;">创建课程</h3>
+            </ElCard>
+        </div>
+    </div>
+
     <!-- 我的收藏 -->
     <div class="block">
       <h2 class="collection-title">我的收藏</h2>
