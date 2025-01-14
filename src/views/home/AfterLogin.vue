@@ -5,6 +5,7 @@ import { ElButton, ElCard } from 'element-plus';
 import { API_URLS } from '@/config/api';
 
 const collection = ref([]);
+const recommendation = ref([]);
 
 const handleJump = () =>{
    router.push('/use');
@@ -26,8 +27,24 @@ const fetchUserCollection = async () => {
   }
 };
 
+const fetchRecommendation = async () => {
+  try {
+    const response = await fetch(API_URLS.getRecommendation, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    recommendation.value = await response.json();
+    console.log('Recommendation:', response);
+  } catch (error) {
+    console.error('Error fetching recommendation:', error);
+  }
+};
+
 onMounted(() => {
   fetchUserCollection();
+  fetchRecommendation();
 });
 </script>
 <template>
@@ -44,8 +61,19 @@ onMounted(() => {
           <h3 class="course-title">{{ lecture.title }}</h3>
           <p class="course-description">{{ lecture.description }}</p>
         </ElCard>
+      </div>
     </div>
-  </div>
+    <!-- 推荐课程 -->
+    <div class="block">
+      <h2 class="collection-title">推荐课程</h2>
+      <div class="collection-grid">
+        <ElCard v-for="lecture in recommendation" :key="lecture.id" class="lecture-card">
+          <img src="/lectureThumbnail.png" alt="lecture.title" class="lecture-thumbnail">
+          <h3 class="course-title">{{ lecture.title }}</h3>
+          <p class="course-description">{{ lecture.description }}</p>
+        </ElCard>
+      </div>
+    </div>
 </template>
 
 <style scoped>
