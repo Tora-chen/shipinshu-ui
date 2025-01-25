@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {ref} from 'vue'
-import { Search } from '@element-plus/icons-vue'
+import {ref,onMounted} from 'vue'
+import { Search, SwitchButton, UserFilled } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/app';
@@ -36,7 +36,12 @@ const onLogin = async () => {
 function openForget() {
   ElMessage.warning('暂不支持找回密码')
 }
-
+// 退出登录
+const handleLogout = () => {
+  authStore.handleLogout()
+  console.log('退出登录')
+  router.push('/')
+}
 //注册弹窗
 const isRegister=ref(false) //注册状态
 const registerDialogVisible = ref(false)
@@ -78,7 +83,9 @@ const handleRegister = () => {
     }
   })
 }
-
+onMounted(() => {
+  console.log('isLogin:', authStore.islogin)
+})
 
 </script>
 
@@ -111,8 +118,25 @@ const handleRegister = () => {
         placeholder="搜索..."
         :suffix-icon="Search"
         />
-        <!-- 头像 -->
-        <el-avatar :size="40" :src="authStore.avatarUrl" @click="handleAvatarClick"/>
+        <!-- 头像和显示用户名 -->
+      <el-dropdown v-if="authStore.islogin" trigger="hover">
+        <el-avatar :size="40" :src="authStore.avatarUrl" class="avatar" />
+        <template #dropdown>
+          <el-dropdown-menu>
+              <span class="username">{{ authStore.username }}</span>
+              <el-dropdown-item :icon="UserFilled"> 个人中心 </el-dropdown-item>
+            <el-dropdown-item :icon="SwitchButton" @click="handleLogout"> 退出登录 </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
+      <el-avatar
+        v-else
+        :size="40"
+        :src="authStore.avatarUrl"
+        @click="handleAvatarClick"
+        class="avatar"
+      />
     </el-header>
             <!-- 登录弹窗 -->
             <el-dialog v-model="authStore.loginDialogVisible" title="登录" width="500" center>
@@ -240,6 +264,14 @@ const handleRegister = () => {
       }
     }
   }
-  
+.username {
+  font-weight: bold; 
+  font-size: 20px; 
+  display: block; 
+  text-align: center; 
+  user-select: none; 
+  padding: 10px 0; 
+  color: #888; 
+}
 
 </style>

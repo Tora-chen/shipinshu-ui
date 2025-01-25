@@ -21,6 +21,7 @@ export const useAuthStore = defineStore('auth', () => {
     const loginDialogVisible = ref(false);
     const avatarUrl=ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
     const form = ref({ username: '', password: '' });
+    const username = ref(''); 
   
     const login = async (data: { username: string; password: string }) => {
         try {
@@ -36,7 +37,8 @@ export const useAuthStore = defineStore('auth', () => {
                 // 登录成功，将 JWT Token 存储到本地存储
                 console.log("登录成功")
                 localStorage.setItem('token', res.data.token); // 假设后端返回的 token 字段名为 "token"
-            } 
+                username.value = data.username;
+              } 
             return { code: res.status, message: res.data.message };
         }
         catch (error: any) {
@@ -49,15 +51,15 @@ export const useAuthStore = defineStore('auth', () => {
     };
   
     const handleLogin = async () => {
-      const { username, password } = form.value;
+      const { username:inputUsername, password } = form.value;
   
-      if (!username || !password) {
+      if (!inputUsername || !password) {
         ElMessage.warning('请输入用户名和密码');
         return;
       }
         
         // 向后端发送登录请求
-        const res = await login({ username, password });
+        const res = await login({ username:inputUsername, password });
         if (res.code !== 200) {
           ElMessage.error(res.message);
           return false;
@@ -70,12 +72,21 @@ export const useAuthStore = defineStore('auth', () => {
       ElMessage.success('登录成功');
       return true;
     };
+    const handleLogout = () =>{
+      islogin.value = false
+      username.value = ''
+      avatarUrl.value = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+      localStorage.removeItem('token')
+      ElMessage.success('退出登录成功')
+    }
   
     return {
       islogin,
       loginDialogVisible,
       form,
       handleLogin,
-      avatarUrl
+      avatarUrl,
+      username,
+      handleLogout
     };
   });
