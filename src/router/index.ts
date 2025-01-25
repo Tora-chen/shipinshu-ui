@@ -16,7 +16,7 @@ const router = createRouter({
         {
           path:'afterlogin',
           name:'afterlogin',
-          component: () => import('@/views/home/AfterLogin.vue'),
+          component: () => import('@/views/home/Afterlogin.vue'),
         },
         {
           path:'about',
