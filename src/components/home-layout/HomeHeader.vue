@@ -93,8 +93,7 @@ onMounted(() => {
     <el-header>
         <div class="sign">
           <router-link to="/">
-          <img src="@/assets/logo.svg" alt="/logo" />
-          <h1>视频书</h1>
+          <img src="/public/logo.png" alt="/logo" />
         </router-link>
         </div>
         <!-- 面包屑 -->
@@ -198,8 +197,7 @@ onMounted(() => {
     overflow: hidden; 
 
     img {
-      width: 30px; 
-      height: auto; 
+      width: 200px; 
       margin-right: 8px; 
       vertical-align: middle;
     }
