@@ -3,7 +3,7 @@
     <div v-for="video in videos" :key="video.id" @click="selectVideo(video)" class="video-item"
       :class="{ 'video-item-active': currentVideo?.id === video.id }">
       <div class="video-icon">
-        <PlayCircleIcon />
+        >
       </div>
       <div class="video-info">
         <h3 class="video-title">{{ video.title }}</h3>
@@ -14,8 +14,6 @@
 </template>
 
 <script setup>
-import { PlayCircleIcon } from 'lucide-vue-next'
-
 defineProps({
   videos: {
     type: Array,
