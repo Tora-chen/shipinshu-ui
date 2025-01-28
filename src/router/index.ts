@@ -81,6 +81,10 @@ const router = createRouter({
         },
         
       ]
+    },
+    {
+      path: '/lecture/:lectureId',
+      component: () => import('@/views/lecture-player/LecturePlayer.vue'),
     }
   ]
 })
