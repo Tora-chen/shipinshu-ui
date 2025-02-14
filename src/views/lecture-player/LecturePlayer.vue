@@ -24,7 +24,11 @@
           </template>
 
           <template #notes>
-            <Notes :video-id="currentVideo?.id" />
+            <Notes v-if="currentVideo" :video-id="currentVideo.id" />
+            <div v-else class="video-placeholder">
+              这里似乎还没有笔记哦~
+            </div>
+
           </template>
         </BottomTabs>
 
