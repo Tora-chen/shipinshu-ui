@@ -17,6 +17,16 @@
         </div>
 
         <!-- 底部选项卡 BottomTabs -->
+        <BottomTabs current-tab="notes" :tabs="tabs">
+          <template #caption>
+            <h2>Caption</h2>
+            <p>Here you can find the caption for the video.</p>
+          </template>
+
+          <template #notes>
+            <Notes :video-id="currentVideo?.id" />
+          </template>
+        </BottomTabs>
 
 
       </div>
@@ -30,10 +40,16 @@ import { useRoute } from 'vue-router'
 import { API_URLS } from '@/config/api'
 import LeftSidebar from './LeftSidebar.vue'
 import HomeHeader from '@/components/home-layout/HomeHeader.vue'
+import BottomTabs from "@/views/lecture-player/BottomTabs.vue";
+import Notes from "@/views/lecture-player/Notes.vue";
 
 const $route = useRoute()
 const videos = ref([])
 const currentVideo = ref(null)
+const tabs = [
+  { id: 'notes', name: '笔记' },
+  { id: 'caption', name: '字幕' },
+]
 
 const fetchVideos = async () => {
   const lectureId = $route.params.lectureId
