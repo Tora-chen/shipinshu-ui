@@ -73,7 +73,7 @@ onMounted(() => {
     <div class="block">
         <h2 class="collection-title">我的课程</h2>
         <div class="collection-grid">
-            <ElCard v-for="lecture in myLectures" :key="lecture.id" class="lecture-card">
+            <ElCard v-for="lecture in myLectures" :key="lecture.id" class="lecture-card" style="cursor: pointer;" @click="router.push(`/lecture/${lecture.id}`)">
             <img src="/lectureThumbnail.png" alt="lecture.title" class="lecture-thumbnail">
             <h3 class="course-title">{{ lecture.title }}</h3>
             <p class="course-description">{{ lecture.description }}</p>
@@ -90,7 +90,7 @@ onMounted(() => {
     <div class="block">
       <h2 class="collection-title">我的收藏</h2>
       <div class="collection-grid">
-        <ElCard v-for="lecture in collection" :key="lecture.id" class="lecture-card">
+        <ElCard v-for="lecture in collection" :key="lecture.id" class="lecture-card" @click="router.push(`/lecture/${lecture.id}`)">
           <img src="/lectureThumbnail.png" alt="lecture.title" class="lecture-thumbnail">
           <h3 class="course-title">{{ lecture.title }}</h3>
           <p class="course-description">{{ lecture.description }}</p>
@@ -101,7 +101,7 @@ onMounted(() => {
     <div class="block">
       <h2 class="collection-title">推荐课程</h2>
       <div class="collection-grid">
-        <ElCard v-for="lecture in recommendation" :key="lecture.id" class="lecture-card">
+        <ElCard v-for="lecture in recommendation" :key="lecture.id" class="lecture-card" @click="router.push(`/lecture/${lecture.id}`)">
           <img src="/lectureThumbnail.png" alt="lecture.title" class="lecture-thumbnail">
           <h3 class="course-title">{{ lecture.title }}</h3>
           <p class="course-description">{{ lecture.description }}</p>
