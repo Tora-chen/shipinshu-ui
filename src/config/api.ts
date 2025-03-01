@@ -6,6 +6,7 @@ export const API_URLS = {
     base: API_BASE_URL,
     login: `${API_BASE_URL}/login`,
     getUserCollection: `${API_BASE_URL}/user-collection/my`,
+    userCollection: `${API_BASE_URL}/user-collection`,
     getRecommendation: `${API_BASE_URL}/lectures/recommendedLecture`,
     getMyLectures: `${API_BASE_URL}/lectures/my`,
     createLecture: `${API_BASE_URL}/lectures`,
