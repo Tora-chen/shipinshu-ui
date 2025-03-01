@@ -9,7 +9,7 @@ const recommendation = ref([]);
 const myLectures = ref([]);
 
 const handleJump = () =>{
-   router.push('/use');
+   router.push('/video/upload');
 }
 
 const fetchUserCollection = async () => {
