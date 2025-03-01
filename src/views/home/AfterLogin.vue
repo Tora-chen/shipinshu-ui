@@ -3,10 +3,12 @@ import router from '@/router';
 import { ref, onMounted } from 'vue';
 import { ElButton, ElCard } from 'element-plus';
 import { API_URLS } from '@/config/api';
+import CreateLecture from "@/components/CreateLecture.vue";
 
 const collection = ref([]);
 const recommendation = ref([]);
 const myLectures = ref([]);
+const showCreateLectureDialog = ref(false);
 
 const handleJump = () =>{
    router.push('/use');
@@ -79,10 +81,18 @@ onMounted(() => {
             <p class="course-description">{{ lecture.description }}</p>
             </ElCard>
             <!-- 添加课程 -->
-            <ElCard class="lecture-card" style="cursor: pointer;">
+            <ElCard class="lecture-card" @click="showCreateLectureDialog = true" style="cursor: pointer;">
             <img src="/addLecture.png" alt="添加课程" class="lecture-thumbnail">
             <h3 class="course-title" style="text-align: center;">创建课程</h3>
             </ElCard>
+
+            <CreateLecture
+                v-if="showCreateLectureDialog"
+                :visible="showCreateLectureDialog"
+                @close="showCreateLectureDialog = false"
+                @created="fetchMyLectures"
+            />
+
         </div>
     </div>
 
