@@ -37,16 +37,16 @@ const router = createRouter({
     },
     
     {
-      path: '/use',
-      name: 'use',
+      path: '/video',
+      name: 'video',
       component: () => import('@/components/play-layout/PlayLayout.vue'),
       meta: { title: '首页' },
       redirect:{name:'select'},
       children: [
         {
-          path: 'select',
-          name:'select',
-          component: () => import('@/views/select/IndexView.vue'),
+          path: 'upload',
+          name:'upload',
+          component: () => import('@/views/select/Video-upload.vue'),
           meta: { title: '上传视频' }
         },
         {
@@ -61,12 +61,12 @@ const router = createRouter({
           component: () => import('@/views/select/LinkPage.vue'),
           meta: { title: '视频链接' }
         },
-        {
-          path: 'list',
-          name: 'ListPage',
-          component: () => import('@/views/select/ListPage.vue'),
-          meta: { title: '视频列表' }
-        },
+        // {
+        //   path: 'list',
+        //   name: 'ListPage',
+        //   component: () => import('@/views/select/ListPage.vue'),
+        //   meta: { title: '视频列表' }
+        // },
         {
           path: 'play',
           name: 'PlayPage',
