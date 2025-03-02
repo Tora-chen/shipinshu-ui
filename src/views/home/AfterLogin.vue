@@ -11,7 +11,7 @@ const myLectures = ref([]);
 const showCreateLectureDialog = ref(false);
 
 const handleJump = () =>{
-   router.push('/use');
+   router.push('/video/upload');
 }
 
 const fetchUserCollection = async () => {

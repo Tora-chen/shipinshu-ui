@@ -21,20 +21,11 @@ const {isCollapse} = asideStore;
           </el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="list">
-          <el-icon><IEpList /></el-icon>
-          <span>视频列表</span>
-        </el-menu-item>
-
         <el-menu-item index="play">
           <el-icon><IEpVideoCameraFilled /></el-icon>
           <span>视频播放</span>
         </el-menu-item>
 
-        <!-- <el-menu-item index="history">
-          <el-icon><IEpManagement /></el-icon>
-          <span>历史记录</span>
-        </el-menu-item> -->
       </el-menu>
     </el-scrollbar>
   </el-aside>

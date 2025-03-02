@@ -2,7 +2,7 @@
 import router from '@/router';
 
  const handleJump = () =>{
-    router.push('/use');
+    router.push('/video/upload');
  }
 </script>
 <template>

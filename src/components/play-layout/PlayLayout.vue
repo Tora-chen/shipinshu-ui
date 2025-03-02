@@ -11,17 +11,17 @@ import HomeFooter from '../home-layout/HomeFooter.vue';
       <el-header>
         <HomeHeader />
       </el-header>
-      <el-container class="aside-and-main">
+      <!-- <el-container class="aside-and-main">
         <PlayAside />
         <el-container class="header-and-main">
-          <PlayHeader />
+          <PlayHeader /> -->
           <el-main>
             <el-scrollbar>
               <router-view />
             </el-scrollbar>
           </el-main>
-        </el-container>
-      </el-container>
+        <!-- </el-container>
+      </el-container> -->
     </el-container>
   </div>
 </template>
