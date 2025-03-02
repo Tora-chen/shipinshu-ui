@@ -78,7 +78,6 @@ const fetchVideos = async () => {
 
 const selectVideo = (video) => {
   currentVideo.value = video
-  alert(currentVideo.value.id + typeof currentVideo.value.id)
 }
 
 onMounted(() => {
