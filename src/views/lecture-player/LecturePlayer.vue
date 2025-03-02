@@ -28,10 +28,7 @@
           </template>
 
           <template #notes>
-            <Notes v-if="currentVideo" :video-id="currentVideo.id" />
-            <div v-else class="video-placeholder">
-              这里似乎还没有笔记哦~
-            </div>
+            <Notes v-if="currentVideo" :video-id="currentVideo.id" :key="currentVideo.id"/>
 
           </template>
         </BottomTabs>
@@ -81,6 +78,7 @@ const fetchVideos = async () => {
 
 const selectVideo = (video) => {
   currentVideo.value = video
+  alert(currentVideo.value.id + typeof currentVideo.value.id)
 }
 
 onMounted(() => {
