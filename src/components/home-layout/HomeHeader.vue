@@ -42,6 +42,10 @@ const handleLogout = () => {
   console.log('退出登录')
   router.push('/')
 }
+//个人中心
+const center = () => {
+  router.push('/afterlogin')
+}
 //注册弹窗
 const isRegister=ref(false) //注册状态
 const registerDialogVisible = ref(false)
@@ -123,7 +127,7 @@ onMounted(() => {
         <template #dropdown>
           <el-dropdown-menu>
               <span class="username">{{ authStore.username }}</span>
-              <el-dropdown-item :icon="UserFilled"> 个人中心 </el-dropdown-item>
+              <el-dropdown-item :icon="UserFilled" @click="center"> 个人中心 </el-dropdown-item>
             <el-dropdown-item :icon="SwitchButton" @click="handleLogout"> 退出登录 </el-dropdown-item>
           </el-dropdown-menu>
         </template>
