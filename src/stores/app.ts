@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref,onMounted } from "vue";
 import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
 import { API_URLS } from '@/config/api';
@@ -78,8 +78,17 @@ export const useAuthStore = defineStore('auth', () => {
       avatarUrl.value = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
       localStorage.removeItem('token')
       ElMessage.success('退出登录成功')
-    }
-  
+    };
+  // 页面加载时检查 token 是否存在，恢复登录状态
+    onMounted(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        islogin.value = true;
+        // 恢复用户名和头像（你也可以根据 token 获取更多信息）
+        username.value = localStorage.getItem('username') || '';
+        avatarUrl.value = 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png';
+      }
+    });
     return {
       islogin,
       loginDialogVisible,
