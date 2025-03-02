@@ -13,6 +13,6 @@ export const API_URLS = {
     getNotes: (videoId: number) => `${API_BASE_URL}/notes/videoNotes/${videoId}`,
     getLectureVideos: (lectureId: number) => `${API_BASE_URL}/lectures/${lectureId}/videos`,
     getVideoStream: (videoId: number) => `${API_BASE_URL}/videos/${videoId}`,
-    videoUpload:`${API_BASE_URL}/videos/upload`,
+    videoUpload:`${API_BASE_URL}/videos/upload?file`,
     getLecture:`${API_BASE_URL}/lectures/my`,
 };

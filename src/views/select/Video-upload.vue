@@ -96,10 +96,10 @@ const onSubmit = async () => {
   try {
     // Create FormData for multipart/form-data submission
     const formData = new FormData()
-    formData.append('name', form.name)
-    formData.append('description', form.description)
+    formData.append('title', form.name)
+    formData.append('transcript', form.description)
     formData.append('file', form.file)
-    formData.append('sort', form.sort)
+    formData.append('lecture_id', form.sort)
 
     // Show loading message
     const loadingNotification = ElNotification({
@@ -110,7 +110,7 @@ const onSubmit = async () => {
     })
 
     // Send request to backend API
-    const { data } = await axios.post(API_URLS.videoUpload, formData, {
+    const  data  = await axios.post(API_URLS.videoUpload, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -125,7 +125,7 @@ const onSubmit = async () => {
     // Close loading notification
     loadingNotification.close()
 
-    if (data.code === 20000 || data.status === 'success') {
+    if (data.toString() === 'Success!') {
       ElNotification({
         title: '上传成功',
         message: '视频已成功上传!',
@@ -133,6 +133,7 @@ const onSubmit = async () => {
         type: 'success'
       })
 
+      let lecture_id = form.sort
       // Reset form
       form.name = ''
       form.description = ''
@@ -141,7 +142,7 @@ const onSubmit = async () => {
       form.sort = ''
 
       // Navigate to video list page
-      router.push('/show')
+      router.push('/lecture/' + lecture_id)
     } else {
       ElNotification({
         title: '上传失败',
