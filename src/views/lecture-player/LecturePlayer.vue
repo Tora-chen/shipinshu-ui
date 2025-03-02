@@ -15,6 +15,10 @@
             咦，视频好像不见了~
           </div>
         </div>
+        <!--        收藏按钮-->
+        <div style="padding-bottom: 1em; display: flex; justify-content: right">
+          <CollectionBottom :lecture-id="$route.params.lectureId"/>
+        </div>
 
         <!-- 底部选项卡 BottomTabs -->
         <BottomTabs current-tab="notes" :tabs="tabs">
@@ -46,6 +50,7 @@ import LeftSidebar from './LeftSidebar.vue'
 import HomeHeader from '@/components/home-layout/HomeHeader.vue'
 import BottomTabs from "@/views/lecture-player/BottomTabs.vue";
 import Notes from "@/views/lecture-player/Notes.vue";
+import CollectionBottom from "@/views/lecture-player/CollectionBottom.vue";
 
 const $route = useRoute()
 const videos = ref([])
