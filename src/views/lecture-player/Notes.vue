@@ -1,6 +1,7 @@
 <template>
   <div class="notes">
     <div v-if="loading">加载中...</div>
+    <div v-if="notes.length === 0">这个视频暂时还没有生成笔记哦~</div>
     <ul v-else>
       <li v-for="note in notes" :key="note.id" class="note-item">
         <img :src=imagePathToUrl(note.imagePath) alt="截图" class="note-image" />

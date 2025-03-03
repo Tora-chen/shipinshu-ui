@@ -23,7 +23,7 @@
         <path d="M12 7V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M9 10H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      {{ isCollected ? 'Collected' : 'Collect' }}
+      {{ isCollected ? '收藏课程' : '已收藏课程' }}
     </span>
   </button>
 </template>

@@ -28,10 +28,7 @@
           </template>
 
           <template #notes>
-            <Notes v-if="currentVideo" :video-id="currentVideo.id" />
-            <div v-else class="video-placeholder">
-              这里似乎还没有笔记哦~
-            </div>
+            <Notes v-if="currentVideo" :video-id="currentVideo.id" :key="currentVideo.id"/>
 
           </template>
         </BottomTabs>
@@ -57,7 +54,7 @@ const videos = ref([])
 const currentVideo = ref(null)
 const tabs = [
   { id: 'notes', name: '笔记' },
-  { id: 'caption', name: '字幕' },
+  // { id: 'caption', name: '字幕' },
 ]
 
 const fetchVideos = async () => {
