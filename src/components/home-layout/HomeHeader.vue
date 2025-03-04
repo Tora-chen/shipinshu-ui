@@ -97,7 +97,7 @@ onMounted(() => {
     <el-header>
         <div class="sign">
           <router-link to="/">
-          <img src="/public/logo.png" alt="/logo" />
+              <img src="/public/logo.png" alt="/logo" style="height: 50px;width: auto"/>
         </router-link>
         </div>
         <!-- 面包屑 -->
@@ -192,6 +192,8 @@ onMounted(() => {
 <style lang="scss" scoped>
     .el-header{
       width: 100%;
+      padding-bottom: 1em;
+      padding-top: 1em;
     }
     .sign {
     display: flex; 
