@@ -69,7 +69,7 @@ onMounted(() => {
 <template>
     <h1 class="tag">视频书让学习更简单</h1>
     <div class="button">
-        <el-button @click="handleJump" style="cursor: pointer;">立即使用</el-button>
+        <el-button @click="handleJump" style="cursor: pointer;">上传视频</el-button>
     </div>
     <!-- 我的课程 -->
     <div class="block">

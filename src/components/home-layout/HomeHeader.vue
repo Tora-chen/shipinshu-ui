@@ -100,30 +100,10 @@ onMounted(() => {
               <img src="/public/logo.png" alt="/logo" style="height: 50px;width: auto"/>
         </router-link>
         </div>
-        <!-- 面包屑 -->
-        <el-breadcrumb separator="|">
-            <el-breadcrumb-item>
-                <router-link to="/about">关于</router-link>
-            </el-breadcrumb-item>
-            <el-breadcrumb-item>
-                <router-link to="/help">帮助</router-link>
-            </el-breadcrumb-item>
-            <!-- <el-breadcrumb-item>
-                <router-link to="/contect">联系</router-link>
-            </el-breadcrumb-item> -->
-        </el-breadcrumb>
-        <!-- 搜索框 -->
-        
-        <el-input
-        v-model="input"
-        style="width: 240px"
-        size="large"
-        placeholder="搜索..."
-        :suffix-icon="Search"
-        />
         <!-- 头像和显示用户名 -->
-      <el-dropdown v-if="authStore.islogin" trigger="hover">
-        <el-avatar :size="40" :src="authStore.avatarUrl" class="avatar" />
+      <div class="avatar-wrapper">
+        <el-dropdown v-if="authStore.islogin" trigger="hover">
+        <el-avatar :size="40" :src="authStore.avatarUrl"  />
         <template #dropdown>
           <el-dropdown-menu>
               <span class="username">{{ authStore.username }}</span>
@@ -138,8 +118,8 @@ onMounted(() => {
         :size="40"
         :src="authStore.avatarUrl"
         @click="handleAvatarClick"
-        class="avatar"
       />
+      </div>
     </el-header>
             <!-- 登录弹窗 -->
             <el-dialog v-model="authStore.loginDialogVisible" title="登录" width="500" center>
@@ -222,9 +202,12 @@ onMounted(() => {
       align-items: center;
       background-color: #eee;
   }
-  .el-input{
-      margin-left: auto;
-  }
+  .avatar-wrapper {
+    margin-left: auto; /* 使头像始终在右边 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 头像右对齐 */
+}
   .el-avatar{
       margin-left: auto;
       cursor: pointer;
